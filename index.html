@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For Mariam ❤️</title>
+
+<style>
+body{
+  background: linear-gradient(pink, red);
+  text-align:center;
+  font-family: Arial;
+  color:white;
+  height:100vh;
+  overflow:hidden;
+}
+
+h1{
+  margin-top:120px;
+  font-size:45px;
+}
+
+button{
+  padding:15px 25px;
+  font-size:20px;
+  margin:20px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+#yes{
+  background:white;
+  color:red;
+}
+
+#no{
+  background:black;
+  color:white;
+  position:absolute;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Mariam 💖<br>Will you be my Valentine?</h1>
+
+<button id="yes" onclick="alert('Yay Mariam 😍❤️')">Yes</button>
+<button id="no">No</button>
+
+<script>
+let noBtn = document.getElementById("no");
+
+noBtn.addEventListener("mouseover", function(){
+  noBtn.style.top = Math.random()*80 + "%";
+  noBtn.style.left = Math.random()*80 + "%";
+});
+</script>
+
+</body>
+</html>
