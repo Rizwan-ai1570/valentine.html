@@ -5,17 +5,23 @@
 
 <style>
 body{
-  background: linear-gradient(pink, red);
-  text-align:center;
-  font-family: Arial;
-  color:white;
-  height:100vh;
+  margin:0;
   overflow:hidden;
+  text-align:center;
+  font-family:Arial;
+  background:linear-gradient(45deg,#ff9a9e,#ff4d6d);
+  color:white;
 }
 
 h1{
   margin-top:120px;
   font-size:45px;
+  animation:fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(-40px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
 button{
@@ -23,19 +29,30 @@ button{
   font-size:20px;
   margin:20px;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   cursor:pointer;
 }
 
 #yes{
   background:white;
-  color:red;
+  color:#ff2e63;
 }
 
 #no{
   background:black;
   color:white;
   position:absolute;
+}
+
+.heart{
+  position:absolute;
+  color:pink;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
 }
 </style>
 </head>
@@ -44,16 +61,54 @@ button{
 
 <h1>Mariam 💖<br>Will you be my Valentine?</h1>
 
-<button id="yes" onclick="alert('Yay Mariam 😍❤️')">Yes</button>
-<button id="no">No</button>
+<button id="yes">Yes ❤️</button>
+<button id="no">No 😅</button>
+
+<!-- 🎵 Romantic Music (replace with your mp3 link) -->
+<audio autoplay loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 let noBtn = document.getElementById("no");
+let yesBtn = document.getElementById("yes");
 
-noBtn.addEventListener("mouseover", function(){
-  noBtn.style.top = Math.random()*80 + "%";
-  noBtn.style.left = Math.random()*80 + "%";
-});
+// 😈 Crazy running NO button
+function moveNo(){
+  noBtn.style.top=Math.random()*80+"%";
+  noBtn.style.left=Math.random()*80+"%";
+}
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("click",moveNo);
+
+// 🎉 Confetti when YES clicked
+yesBtn.onclick=function(){
+  alert("Yay Mariam 😍❤️ I love you!");
+  for(let i=0;i<150;i++){
+    let conf=document.createElement("div");
+    conf.innerHTML="💖";
+    conf.style.position="absolute";
+    conf.style.left=Math.random()*100+"%";
+    conf.style.top="-20px";
+    conf.style.fontSize="24px";
+    document.body.appendChild(conf);
+    let fall=setInterval(()=>{
+      conf.style.top=parseInt(conf.style.top)+5+"px";
+    },30);
+    setTimeout(()=>{clearInterval(fall);conf.remove();},4000);
+  }
+};
+
+// 💗 Floating hearts background
+setInterval(()=>{
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="💗";
+  heart.style.left=Math.random()*100+"%";
+  heart.style.fontSize=(Math.random()*20+20)+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+},400);
 </script>
 
 </body>
